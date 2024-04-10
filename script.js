@@ -26,29 +26,47 @@ function gotLocation(position){
 
 
 }
-
 function getData(latitude, longitude){
     console.log('latitude is:', latitude)
     console.log('longitude is:', longitude)
 
-    const GEOCODING_API_URL = `api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
+    // const GEOCODING_API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${latitude},${longitude}&appid=${API_KEY}`;
 
-    fetch(GEOCODING_API_URL)
-        .then(res =>{
-            if (!res.ok){
-                throw new Error('omo is all i can say cause e no work');
-            }
-            return res.json();
-        })
-        .catch(()=>{
-            alert('omo mad ohh, wetin you dey do!!')
-        })
+// api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}
+
+    const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
+
+    fetch(WEATHER_API_URL)
+    .then(res => res.json())
+    .then(data =>{
+        console.log(data)
+    }).catch(() =>{
+        alert('omo i no know wetin i fit do again')
+    })
+
+
+
 
     // fetch(GEOCODING_API_URL).then(res => res.json()).then(data =>{
-    //     console.log(data)
+    //     const {latitude, longitude} = data;
+    //     getWeatherDetails(latitude, longitude)
     // }).catch(() =>{
     //     alert('omo mad error dey, go check am again!!')
     // })
+
+
+    // fetch(GEOCODING_API_URL)
+    //     .then(res =>{
+    //         if (!res.ok){
+    //             throw new Error('omo is all i can say cause e no work');
+                
+    //         }
+    //         return res.json();
+    //     })
+    //     .catch(()=>{
+    //         alert('omo mad ohh, wetin you dey do!!')
+    //         console.log('latitude should be:', latitude )
+    //     })
 }
 
 // const cityInput = "Lagos";
