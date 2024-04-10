@@ -34,12 +34,26 @@ function getData(latitude, longitude){
 
 // api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}
 
+// weather api data collected
     const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
 
     fetch(WEATHER_API_URL)
     .then(res => res.json())
     .then(data =>{
-        console.log(data)
+
+        // filter forecast to get only one forecast per day
+        const uniqueForecastDays = [];
+        const sevenDaysForecast = data.list.filter(forecast => {
+            const forecastDate = new Date(forecast.dt_txt).getDate();
+            if(!uniqueForecastDays.includes(forecastDate)){
+                return uniqueForecastDays.push(forecastDate);
+            }
+        });
+
+        console.log(sevenDaysForecast);
+        sevenDaysForecast.forEach(weatherItem => {
+            createWeatherCard();
+        })
     }).catch(() =>{
         alert('omo i no know wetin i fit do again')
     })
