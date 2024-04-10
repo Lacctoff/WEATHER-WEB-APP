@@ -20,6 +20,10 @@ const button =document.querySelector("#get-location-button");
 // weather api key
 const API_KEY = "f004b7d5c5e56c9f2f923fda20760b4e";
 
+const createWeatherCard = (weatherItem) =>{
+    return ``;
+}
+
 button.addEventListener('click', ()=>{
     navigator.geolocation.getCurrentPosition(gotLocation, failedToGet)
 })
@@ -69,7 +73,7 @@ function getData(latitude, longitude){
 
         console.log(sevenDaysForecast);
         sevenDaysForecast.forEach(weatherItem => {
-            createWeatherCard();
+            createWeatherCard(weatherItem);
         })
     }).catch(() =>{
         alert('omo i no know wetin i fit do again')
