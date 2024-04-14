@@ -17,11 +17,21 @@ themeToggler.addEventListener('click', () => {
 
 //Get current location of the user
 const button =document.querySelector("#get-location-button");
+const weatherCardDiv = document.querySelector(".weather-forecast")
+const TodayWeatherCard = document.querySelector(".today")
 // weather api key
 const API_KEY = "f004b7d5c5e56c9f2f923fda20760b4e";
 
 const createWeatherCard = (weatherItem) =>{
-    return ``;
+    return `
+    <div class="weather-forecast-item">
+        <div class="day">${weatherItem.dt_txt.split(" ")[0]}</div>
+        <img src="http://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
+        <div class="temp">Temp:  ${(weatherItem.main.temp - 273.15).toFixed(2)}&#176; C</div>
+        <div class="temp">Wind: ${weatherItem.wind.speed}M/S</div>
+        <div class="temp">Humidity: ${weatherItem.main.humidity}% </div>
+    </div>    
+    `;
 }
 
 button.addEventListener('click', ()=>{
@@ -71,9 +81,13 @@ function getData(latitude, longitude){
             }
         });
 
+        //clearing pervious weather data
+        // TodayWeatherCard.innerHTML = "";
+        weatherCardDiv.innerHTML = "",
+
         console.log(sevenDaysForecast);
         sevenDaysForecast.forEach(weatherItem => {
-            createWeatherCard(weatherItem);
+            weatherCardDiv.insertAdjacentHTML("beforeend", createWeatherCard(weatherItem) );
         })
     }).catch(() =>{
         alert('omo i no know wetin i fit do again')

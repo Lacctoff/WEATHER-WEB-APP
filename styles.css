@@ -126,6 +126,7 @@ body {
     width: 100%;
     align-items: center;
     justify-content: center;
+    height: 45vh;
     overflow-y: hidden;
     
 }
