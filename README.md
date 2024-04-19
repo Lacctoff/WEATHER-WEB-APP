@@ -5,7 +5,9 @@ A program that uses open weather API to give current weather report of your loca
   - HTML
   - CSS
   - JAVASCRIPT
-
+  - Netlify
+## Google Slide Link
+https://docs.google.com/presentation/d/1qNWCjnsN47ZXuIP7Xto3Zu5ttMHUvYhzyV5VaajDhGo/edit?usp=sharing
 ## Links
 weathersimapp.netlify.app
 
